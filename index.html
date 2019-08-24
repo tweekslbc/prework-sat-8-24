@@ -10,6 +10,9 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
+      input {
+        height: 2rem;
+      }
     </style>
   </head>
   <body>
@@ -17,6 +20,14 @@
     <script type='text/babel'>
       const { render } = ReactDOM;
       const { Component } = React;
+
+      const NameForm = ({ name })=> {
+        return (
+          <div>
+            <input value={ name } />
+          </div>
+        );
+      };
 
       class App extends Component{
         cosntructor(){
