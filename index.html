@@ -10,7 +10,7 @@
     ></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <style>
-      input {
+      input, button {
         height: 2rem;
       }
     </style>
@@ -22,10 +22,19 @@
       const { Component } = React;
 
       class NameForm extends Component {
-        render() {
+        constructor({ name }){
+          super();
+          this.state = {
+            name
+          };
+        }
+        render(){
+          const { onChangeName }= this.props;
+          const { name } = this.state;
           return (
             <div>
-              <input value={name} onChange={onChangeName} />
+              <input value={name} onChange={ (ev)=> this.setState({ name: ev.target.value }) }/>
+              <button>Update</button>
             </div>
           );
         }
