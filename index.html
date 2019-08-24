@@ -21,10 +21,10 @@
       const { render } = ReactDOM;
       const { Component } = React;
 
-      const NameForm = ({ name })=> {
+      const NameForm = ({ name, onChangeName })=> {
         return (
           <div>
-            <input value={ name } />
+            <input value={ name } onChangeName= { onChangeName }/>
           </div>
         );
       };
@@ -36,12 +36,16 @@
             name: 'foo'
           };
         }
+        onChangeName(ev){
+          console.log(ev.target.value);
+        }
         render(){
           const { name } = this.state;
+          const { onChangeName }= this;
           return (
             <div>
               <h1>The name is { name.length } characters long</h1>
-              <NameForm name={ name } />
+              <NameForm name={ name } onChangeName = { onChangeName } />
             </div>
           );
         }
