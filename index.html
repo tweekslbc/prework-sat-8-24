@@ -1,6 +1,6 @@
 <html>
   <head>
-      <script
+    <script
       src="https://unpkg.com/react@16/umd/react.development.js"
       crossorigin
     ></script>
@@ -16,44 +16,46 @@
     </style>
   </head>
   <body>
-    <div id='root'></div>
-    <script type='text/babel'>
+    <div id="root"></div>
+    <script type="text/babel">
       const { render } = ReactDOM;
       const { Component } = React;
 
-      const NameForm = ({ name, onChangeName })=> {
-        return (
-          <div>
-            <input value={ name } onChange= { onChangeName }/>
-          </div>
-        );
-      };
-
-      class App extends Component{
-        constructor(){
-          super();
-          this.state = {
-            name: 'foo'
-          };
-          this.onChangeName = this.onChangeName.bind(this);
-        }
-        onChangeName(ev){
-          this.setState({ name: ev.target.value });
-        }
-        render(){
-          const { name } = this.state;
-          const { onChangeName }= this;
+      class NameForm extends Component {
+        render() {
           return (
             <div>
-              <h1>The name is { name.length } characters long</h1>
-              <NameForm name={ name } onChangeName = { onChangeName } />
+              <input value={name} onChange={onChangeName} />
             </div>
           );
         }
       }
 
-      const root = document.querySelector('#root');
+      class App extends Component {
+        constructor() {
+          super();
+          this.state = {
+            name: "foo"
+          };
+          this.onChangeName = this.onChangeName.bind(this);
+        }
+        onChangeName(ev) {
+          this.setState({ name: ev.target.value });
+        }
+        render() {
+          const { name } = this.state;
+          const { onChangeName } = this;
+          return (
+            <div>
+              <h1>The name is {name.length} characters long</h1>
+              <NameForm name={name} onChangeName={onChangeName} />
+            </div>
+          );
+        }
+      }
+
+      const root = document.querySelector("#root");
       render(<App />, root);
-      </script>
+    </script>
   </body>
 </html>
