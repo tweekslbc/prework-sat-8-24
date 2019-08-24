@@ -13,7 +13,19 @@
     </style>
   </head>
   <body>
-    <script>
+    <div id='root'></div>
+    <script type='text/babel'>
+      const { render } = ReactDOM;
+      const { Component } = React;
+
+      class App extends Component{
+        render(){
+          return <hr />;
+        }
+      }
+
+      const root = document.querySelector('#root');
+      render(<App />, root);
       </script>
   </body>
 </html>
