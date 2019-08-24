@@ -24,20 +24,21 @@
       const NameForm = ({ name, onChangeName })=> {
         return (
           <div>
-            <input value={ name } onChangeName= { onChangeName }/>
+            <input value={ name } onChange= { onChangeName }/>
           </div>
         );
       };
 
       class App extends Component{
-        cosntructor(){
+        constructor(){
           super();
           this.state = {
             name: 'foo'
           };
+          this.onChangeName = this.onChangeName.bind(this);
         }
         onChangeName(ev){
-          console.log(ev.target.value);
+          this.setState({ name: ev.target.value });
         }
         render(){
           const { name } = this.state;
