@@ -34,7 +34,9 @@
           return (
             <div>
               <input value={name} onChange={ (ev)=> this.setState({ name: ev.target.value }) }/>
-              <button>Update</button>
+              <button disabled={ name === this.props.name } onClick={ ()=> onChangeName(name)}>Update</button>
+
+              <button onClick={ ()=> this.setState({ name: this.props.name })}>Cancel</button>
             </div>
           );
         }
@@ -48,8 +50,8 @@
           };
           this.onChangeName = this.onChangeName.bind(this);
         }
-        onChangeName(ev) {
-          this.setState({ name: ev.target.value });
+        onChangeName(name) {
+          this.setState({ name });
         }
         render() {
           const { name } = this.state;
