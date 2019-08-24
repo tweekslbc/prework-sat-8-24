@@ -26,7 +26,13 @@
           };
         }
         render(){
-          return <hr />;
+          const { name } = this.state;
+          return (
+            <div>
+              <h1>The name is { name.length } characters long</h1>
+              <NameForm name={ name } />
+            </div>
+          );
         }
       }
 
