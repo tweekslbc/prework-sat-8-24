@@ -13,6 +13,11 @@
       input, button {
         height: 2rem;
       }
+
+      #nameForm {
+        display: flex;
+        flex-direction: column;
+      }
     </style>
   </head>
   <body>
@@ -22,21 +27,28 @@
       const { Component } = React;
 
       class NameForm extends Component {
-        constructor({ firstName, lastName }){
+        constructor({ firstName, lastName }) {
           super();
           this.state = {
             firstName,
             lastName
           };
         }
-        render(){
-          const { onChangeName }= this.props;
+        render() {
+          const { onChangeName } = this.props;
           const { firstName, lastName } = this.state;
+          const disabled = firstName === this.props.firstName && lastName === this.props.lastName;
           return (
-            <div>
-              <input value={ firstName } onChange={ (ev)=> this.setState({ firstName: ev.target.value }) }/>
-              <input value={ lastName } onChange={ (ev)=> this.setState({ lastName: ev.target.value }) }/>
-              <button onClick={ ()=> onChangeName(this.state)}>Update</button>
+            <div id="nameForm">
+              <input
+                value={firstName}
+                onChange={ev => this.setState({ firstName: ev.target.value })}
+              />
+              <input
+                value={lastName}
+                onChange={ev => this.setState({ lastName: ev.target.value })}
+              />
+              <button onClick={() => onChangeName(this.state)} disabled ={ disabled }>Update</button>
             </div>
           );
         }
@@ -47,7 +59,7 @@
           super();
           this.state = {
             firstName: "foo",
-            lastName: 'bar'
+            lastName: "bar"
           };
           this.onChangeName = this.onChangeName.bind(this);
         }
@@ -59,8 +71,14 @@
           const { onChangeName } = this;
           return (
             <div>
-              <h1>Hello { firstName } { lastName}!</h1>
-              <NameForm firstName={ firstName } lastName = { lastName } onChangeName={onChangeName} />
+              <h1>
+                Hello {firstName} {lastName}!
+              </h1>
+              <NameForm
+                firstName={firstName}
+                lastName={lastName}
+                onChangeName={onChangeName}
+              />
             </div>
           );
         }
